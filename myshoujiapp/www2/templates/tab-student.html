@@ -1,0 +1,124 @@
+<ion-view hide-nav-bar="true" hide-tabs="true">
+  <style>
+    .listtitle5{
+      border-right:2px solid white;
+    }
+    .row9{
+      background-color: #cccccc;
+      position: relative;
+      top:-10px;
+      height: 20%;
+      padding-top:10px;
+    }
+    .oul{
+      width:80%;
+      float: right;
+      border-left:1px dashed #999;
+    }
+    .oul>li:before{
+      content: url("img/study_circle.png");
+      position: absolute;
+      left:-9px;
+      top:3px;
+    }
+    .oul>li{
+      position:relative;
+      width: 100%;
+      margin:30px 0;
+    }
+    .oul>li span:first-child{
+      margin-left:15px;
+    }
+    .oul>li span:last-child{
+      margin-right:40px;
+    }
+    .mask{
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;left: 0;
+      line-height:50%;
+      background-color:rgba(0,0,0,.5);
+      text-align: center;
+    }
+    .mask>a{
+      color: white;
+      font-size:1.5em;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left:-1.5em;
+      margin-top:-10px;
+      text-decoration: none;
+    }
+
+  </style>
+
+  <!-- 模态框部分  -->
+  <script id="my-modal.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar class="bar-positive ba-button-right" title-align="center">
+        <h1 class="title">写评论</h1>
+        <button class="button button-clear" ng-click="modal.hide()">关闭</button>
+      </ion-header-bar>
+      <ion-content>
+        <div class="list" style="width: 100%;padding:20px">
+          <textarea class="item item-inset" rows="10" style="width: 100%" placeholder="吐槽、表扬、鼓励......想说什么就说什么" ng-model="myId2.evaluate"></textarea>
+        </div>
+        <div class="text-center">
+          <button class="button button-positive" ng-click="pinglun()">提交</button>
+        </div>
+      </ion-content>
+    </ion-modal-view>
+  </script>
+
+
+  <div style="position: absolute;width: 100%;z-index: 9;height: 31%;" >
+    <video  ng-src="{{newUrl}}" controls style="width:100%;height:5.96rem;"></video>
+
+    <!--<video id="video1"  controls style="width:100%;height: 5.56rem"></video>-->
+
+    <div class="mask" ng-hide="mask2"><a href="#/tab/personal">请登录</a></div>
+    <div class="row row9 text-center padding" >
+      <div class="col-50 listtitle5" ng-click="data()" ng-style="fontcolor3">目录<i class="icon ion-ios-arrow-down"></i></div>
+      <div class="col-50" ng-click="data2()" ng-style="fontcolor4">详情<i class="icon ion-ios-arrow-down"></i></div>
+    </div>
+  </div>
+  <ion-content style="margin-top:69%;">
+    <div class="list"  ng-show="show1" ng-repeat="title in mian">
+      <div class="item" style="border-bottom:none;padding-left:0;padding-right:0 ">
+        <h2 style="border-bottom: 1px solid #cccccc;padding:0 0 15px 20px;">{{title.CDname}}</h2>
+        <ul class="oul" style="margin-top: 20px;">
+          <li class="text-left"  ng-repeat="temp in title.Vlist">
+            <span ng-click="video(temp)" style="text-overflow:ellipsis;display:inline-block;width:150px;overflow: hidden;white-space: nowrap">{{temp.Vname}}</span>
+            <span style="float: right">{{temp.Vtime}}</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="list"  ng-show="show2">
+      <div class="item"><h2 class="positive">**课程评价</h2></div>
+      <div class="item item-avatar-left" ng-repeat="temp in pingjialist">
+        <img ng-src="{{img.Cpic}}">
+        <h2>评论Id:{{temp.ID}}</h2>
+        <p style="display: inline-block">{{temp.evaluate}}</p>
+        <span style="float:right;position: relative;top:-5px;margin-right:30px;">{{temp.createAt}}</span>
+      </div>
+    </div>
+  </ion-content>
+
+  <ion-footer-bar class="tabs-icon-top tabs-color-active-positive" ng-show="footer" >
+    <div class="tabs" >
+      <a class="tab-item" ng-click="modal.show()">
+        <i class="icon ion-edit"></i>评价
+      </a>
+      <a class="tab-item" ng-click="setid()" ng-class="{true: 'active', false: 'inactive'}[is]">
+        <i class="icon ion-ios-star-outline"></i>{{name}}
+      </a>
+      <a class="tab-item" ng-click="pay()">
+        <i class="icon ion-ios-download-outline"></i>{{goshowping}}
+      </a>
+    </div>
+  </ion-footer-bar>
+</ion-view>

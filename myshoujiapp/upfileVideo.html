@@ -1,0 +1,170 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+ 
+    	<meta charset="UTF-8">
+	<title>注册</title>
+
+         <script type="text/javascript" src="jquery-easyui-1.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="Scripts/jquery.easyui.min.js"></script>
+	<script type="text/javascript" src="Scripts/ajaxfileupload.js"></script>
+ 
+
+
+</head>
+<body>
+
+	<div style="margin:10px 0;"></div>
+
+    <form id="myForm" method="post">
+
+
+
+	<div  title="注册" style="width:600px;padding:10px 60px 20px 60px">
+		<table cellpadding="5">
+	
+                        			<tr>
+				<td>视频名称：</td>
+				<td> 
+                    <input id="Vname" name="Vname" type="text" /></td>
+			</tr>
+
+                        			<tr>
+				<td>视频时长：</td>
+				<td>
+                    <input id="Vtime" name="Vtime" type="text" /></td>
+			</tr>
+
+
+
+
+
+            			<tr>
+				<td>上传视频：</td>
+				<td><input type="file" id="file1" name="file"  /> </td>
+			</tr>
+
+
+
+
+
+            <tr>
+				<td>
+                    <input id="Cpic" name="Cpic"  type="text" /></td>
+				<td align="right"><a href="#"  id="btnLogin" name="btnLogin">Save</a></td>
+			</tr>
+		</table>
+	</div>
+
+    </form>
+
+
+     <script type="text/javascript">
+
+
+
+         function GetPost(AccUrl) {
+
+
+             $('#myForm').form('submit', {
+                 url: '/Handler/VideoHandler.ashx?action=add&Vurl=' + AccUrl,
+                 onSubmit: function () {
+                     // return $(this).form('validate');
+                 },
+                 success: function (data) {
+                     alert(data);
+  
+                 }
+             });
+
+         }
+
+
+
+
+         function checkType1(file) {
+
+             //得到上传文件的值     
+             var fileName = document.getElementById(file).value;
+             //返回String对象中子字符串最后出现的位置.     
+             var seat = fileName.lastIndexOf(".");
+
+             //返回位于String对象中指定位置的子字符串并转换为小写.     
+             var extension = fileName.substring(seat).toLowerCase();
+
+             //判断允许上传的文件格式     
+
+             var allowed = [".mp4", ".ogg"]
+             for (var i = 0; i < allowed.length; i++) {
+                 if (!(allowed[i] != extension)) {
+                     return true;
+                 }
+             }
+             // alert("不支持" + extension + "格式");
+             $.messager.alert('提示', "不支持" + extension + "格式");
+             return false;
+         }
+
+
+
+
+
+
+         $(function () {
+
+
+             $("#btnLogin").click(function () {
+                 // alert("aa");
+
+
+                 //////////////上传图片/////////
+
+                 if (checkType1('file1')) {
+                     $.ajaxFileUpload
+                          			(
+                          				{
+                          				    url: 'Handler/UpLoadVideoHandler.ashx',
+                          				    secureuri: false,
+                          				    fileElementId: ['file1'],
+                          				    dataType: 'json',
+                          				    success: function (data, status) {
+
+                          				        GetPost(data.cacheName)
+                          				        // alert(data.cacheName);
+
+                                              
+
+
+                          				    },
+                          				    error: function (data, status, e) {
+                          				        alert(1);
+                          				    }
+                          				}
+                                      )
+                 }
+
+
+
+                 ///////////////上传图片////////
+
+
+             })
+
+             return false;
+         })
+
+     </script>
+
+
+	<style scoped="scoped">
+		.textbox{
+			height:20px;
+			margin:0;
+			padding:0 2px;
+			box-sizing:content-box;
+		}
+	</style>
+
+</body>
+</html>

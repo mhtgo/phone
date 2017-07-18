@@ -1,0 +1,96 @@
+<ion-view view-title="首页" hide-nav-bar="true">
+  <style>
+    .navpic{
+      width: 1rem;
+      height:1rem;
+      margin-right:.3rem;
+    }
+    .navpic>img {
+      width: 100%;
+      height: 100%;
+    }
+    .box{
+      width: 100%;
+      height:4.65rem;
+    }
+    .box>img{
+      width: 100%;
+      height: 100%;
+    }
+    .goodlist img{
+      width: 100%;
+      height:2.8rem;
+    }
+    .goodlist>div{
+      padding:5px;
+    }
+    .goodlist{
+      padding: 10px;
+    }
+    .myitem1>a{
+      color: #cccccc;
+      float: right;
+      text-decoration: none ;
+    }
+    a{
+      text-decoration: none;
+      color:inherit;
+    }
+  </style>
+  <ion-content>
+
+        <div class="list">
+          <div class="item item-input-inset icon-right">
+            <div class="navpic"><img src="img/person_touxiang.png" ng-click="toggleLeftSideMenu()"></div>
+              <label class="item-input-wrapper"><input type="text" ng-model="searchTxt.mytext"></label>
+              <button class="button button-small icon ion-search" ng-click="tzlist()"></button>
+          </div>
+
+          <div>
+              <ion-slide-box  delegate-handle="slideimgs" does-continue="true" slide-interval="3000" auto-play="true">
+                <ion-slide ng-repeat="temp in mylunbo">
+                  <div class="box"><img ng-src="{{URLAdmin + temp.Cpic}}"></div>
+                </ion-slide>
+              </ion-slide-box>
+          </div>
+
+          <div class="">
+            <p class="item">好评榜</p>
+              <div class="row goodlist" ng-repeat="temp in mylist">
+                <div class="col-50" ng-repeat="list in temp">
+                  <a href="#/tab/homestudent/{{list.ID}}">
+                    <img ng-src="{{URLAdmin + list.Cpic}}">
+                    <h4 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 6em;">{{list.Cname}}</h4>
+                    <p>{{list.Cdescribe}}</p>
+                    </a>
+                </div>
+              </div>
+          </div>
+
+          <div class="">
+            <p class="item"></p>
+            <p class="item myitem1">最新课程<a href="#/tab/courselist">更多<i class="icon ion-chevron-right"></i></a></p>
+            <div class="row goodlist" ng-repeat="temp in mynewlist">
+              <div class="col-50" ng-repeat="list in temp">
+                <a href="#/tab/homestudent/{{list.ID}}">
+                  <img ng-src="{{URLAdmin + list.Cpic}}">
+                  <h4 style="overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width: 6em;">{{list.Cname}}</h4>
+                  <p>{{list.Cdescribe}}</p>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="item"></p>
+          <p class="item">猜你喜欢</p>
+          <a class="item item-thumbnail-left" ng-repeat="temp in mylovelist">
+              <img ng-src="{{URLAdmin + temp.Cpic}}" ng-click="jump1('{{temp.ID}}')">
+              <h4 ng-click="jump1('{{temp.ID}}')">{{temp.Cname}}</h4>
+              <p>{{temp.Cdescribe}}</p>
+          </a>
+        </div>
+      </ion-content>
+
+</ion-view>

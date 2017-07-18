@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    
+   <script type="text/javascript" src="Scripts/jquery.min.js"></script>
+    
+   <script type="text/javascript" src="Scripts/jquery.easyui.min.js"></script>
+
+</head>
+<body>
+    <div id="1">1</div><div id="2">2</div><div id="3">3<input id="searchText" name="searchText" type="text" /><input id="CategoryOne" name="CategoryOne" type="text" /><input id="CategoryTwo" name="CategoryTwo" type="text" /><input id="CategoryThree" name="CategoryThree" type="text" /></div>
+    <input id="Button1" type="button" value="button" />
+        <input id="top" type="button" value="置顶" />
+
+
+     <input id="delVideo" type="button" value="删除视频" />
+
+
+    <input id="quit" type="button" value="退出" />
+
+    <div id ="result"></div>
+
+</body>
+</html>
+<script type="text/javascript">
+
+
+
+
+
+    $(function () {
+        $("#1").click(function () {
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/CourseHandler.ashx?action=AddDirectory",
+                data: "CDName=aaaa&CDid=1",
+                success: function (msg) {
+                   
+                }
+            });
+
+        })
+
+        $("#2").click(function () {
+            
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/CourseHandler.ashx?action=show",
+                data: "pageStart=" + $("#2").text() + "&searchText=" + $("#searchText").val() + "&CategoryOne=" + $("#CategoryOne").val() + "&CategoryTwo=" + $("#CategoryTwo").val() + "&CategoryThree=" + $("#CategoryThree").val(),
+                success: function (msg) {
+
+                }
+            });
+
+
+        })
+
+        $("#3").click(function () {
+           
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/CourseHandler.ashx?action=getcategory",
+                data: "pageStart=" + $("#3").text(),
+                success: function (msg) {
+
+                }
+            });
+
+        })
+
+
+        $("#Button1").click(function () {
+
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/CourseHandler.ashx?action=getcourse",
+                data: "ID=1",
+                success: function (msg) {
+                    alert(msg);
+                }
+            });
+
+        })
+
+
+
+        //$("#delVideo").click(function () {
+
+
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "Handler/CourseHandler.ashx?action=delvideo",
+        //        data: "Did=1&courseId=1&Vid=1",
+        //        success: function (msg) {
+        //            alert(msg);
+        //        }
+        //    });
+
+        //})
+
+
+        //$("#top").click(function () {
+
+
+        //    $.ajax({
+        //        type: "POST",
+        //        url: "Handler/CourseHandler.ashx?action=top",
+        //        data: "ID=1",
+        //        success: function (msg) {
+        //            alert(msg);
+        //        }
+        //    });
+
+        //})
+
+
+
+
+        $("#quit").click(function () {
+
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/AdminHandler.ashx?action=quit",
+                data: "ID=1",
+                success: function (msg) {
+
+                    var data = eval('(' + msg + ')');
+                    if (data.success == "退出成功") {
+                        window.location = "Test_adminLogin.html";
+
+                    }
+
+                    alert(msg);
+                }
+            });
+
+        })
+
+
+
+
+
+
+    })
+
+
+</script>

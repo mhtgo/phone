@@ -1,0 +1,63 @@
+<ion-view view-title="课程列表" hide-nav-bar="true">
+  <style>
+    .listtitle{
+      border-right:1px solid #cccccc;
+    }
+    .row1{
+      width: 100%;
+      background-color:#E8E8E8;
+    }
+    .row1>li{
+      background-color:white;
+      white-space: nowrap;
+      border: 1px solid #9e9e9e;
+      width: 20%;
+      margin:2.5%;
+      line-height:1rem;
+      display: inline-block;
+    }
+    .row2>li{
+      line-height:1.5rem;
+      width: 100%;
+      border-bottom:1px solid #9e9e9e;
+      padding-left:1rem;
+      background-color:#E8E8E8;
+    }
+  </style>
+    <div class="list">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper ">
+          <i class="icon ion-search placeholder-icon" ></i>
+          <input type="text" placeholder="请输入搜索词" ng-model="txt" ng-keypress="myKeyup($event)">
+        </label>
+        <!--<button ng-click="searchlist(txt,'','')">222</button>-->
+      </div>
+
+      <div class="row row3 text-center padding-top" >
+        <div class="col-50 listtitle" ng-click="row1show()" ng-style="fontcolor">课程列表<i class="icon ion-ios-arrow-down"></i></div>
+        <div class="col-50" ng-click="row2show()" ng-style="fontcolor2">价格<i class="icon ion-ios-arrow-down"></i></div>
+      </div>
+      <hr>
+    </div>
+
+    <div class="list" style="position: absolute; z-index: 999;top:2.7rem;width:100%;">
+      <ul class="row1" ng-show="on1">
+        <li class="text-center" ng-repeat="temp in courseListBtns" ng-click="searchlist('','{{temp.sysId}}','')">{{temp.title}}</li>
+      </ul>
+      <ul class="row2" ng-show="on2">
+        <li class="" ng-repeat="temp in priceBtns" ng-click="courseSerch2('','',temp.sysId)">{{temp.title}}</li>
+      </ul>
+    </div>
+
+    <ion-content style="margin-top:2.8rem" ng-controller="Homestudent">
+        <div class="item item-thumbnail-left" ng-repeat="temp in listEl">
+            <img ng-src="{{URLAdmin + temp.Cpic}}" ng-click="tz('{{temp.ID}}')">
+            <h3 ng-click="tz('{{temp.ID}}')">{{temp.Cname}}</h3>
+            <p>{{temp.Cdescribe}}</p>
+        </div>
+      </div>
+
+
+      <ion-infinite-scroll on-infinite="loadMore()" ng-if="loadmore"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

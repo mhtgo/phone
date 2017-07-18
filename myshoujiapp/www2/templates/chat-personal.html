@@ -1,0 +1,62 @@
+<ion-view view-title="" hide-nav-bar="false" class="mypersonal">
+  <!--<ion-header-bar>-->
+    <!--<h3>个人中心</h3>-->
+  <!--</ion-header-bar>-->
+  <style>
+    .mypersonal{
+      background:url('img/login_bg.png') no-repeat center center;
+      background-size:100% auto;
+    }
+    .meitem{
+      width: 3rem;
+      height: 3rem;
+      background-color:transparent;
+      border:0;
+      left:50%;
+      padding: 0;
+      margin-left:-1.5rem;
+    }
+    .meitem>img{
+      width: 100%;
+      height: 100%;
+    }
+    .myinput{
+      padding:0 15px 0 15px;
+      background-color:transparent;
+    }
+    .myrow a{
+      text-decoration: none;
+      color: #000;
+      font-size:16px;
+    }
+    .mypersonal ion-content>div:first-child{
+      margin-top:2.5rem;
+    }
+  </style>
+  <ion-content class="text-center">
+
+    <div class="list">
+      <div class="item meitem">
+        <img src="img/login_logo.png">
+      </div>
+    </div>
+
+    <div class="list list-inset myinput">
+      <label class="item item-input">
+        <input type="text" placeholder="用户名" ng-model="data.userName">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="密码" ng-model="data.userPwd">
+      </label>
+      <br>
+      <button class="button button-positive button-full" ng-click="tj()">登录</button>
+      <div class="row myrow padding-bottom">
+        <div class="col-50 text-left" ><a class="padding" href="#/tab/register">注册</a></div>
+        <div class="col-50 text-right"><a class="padding" href="">忘记密码</a></div>
+      </div>
+    </div>
+
+
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    
+   <script type="text/javascript" src="Scripts/jquery.min.js"></script>
+    
+   <script type="text/javascript" src="Scripts/jquery.easyui.min.js"></script>
+
+
+
+</head>
+<body>
+    <div id="1">1</div><div id="2">2</div><div id="3">3</div>
+
+    <div id ="result"></div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $("#1").click(function () {
+
+
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/AdminHandler.ashx?action=show",
+                data: "pageStart=" + $("#1").text(),
+                jsonp: "jsoncallback",
+                success: function (msg) {
+                    console.log(msg);
+                }
+            });
+
+    
+
+
+
+        })
+
+        $("#2").click(function () {
+            
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/AdminHandler.ashx?action=show",
+                data: "currentPage=" + $("#2").text(),
+                success: function (msg) {
+                    console.log(msg);
+                }
+            });
+
+
+        })
+
+        $("#3").click(function () {
+           
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/AdminHandler.ashx?action=show",
+                data: "currentPage=" + $("#3").text(),
+                success: function (msg) {
+                    console.log(msg);
+                }
+            });
+
+        })
+    })
+
+
+
+
+
+
+</script>

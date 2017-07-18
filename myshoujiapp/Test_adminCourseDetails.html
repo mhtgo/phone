@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+
+
+   <script type="text/javascript" src="Scripts/jquery.min.js"></script>
+    
+   <script type="text/javascript" src="Scripts/jquery.easyui.min.js"></script>
+
+
+     
+        <script type="text/javascript">
+            function OpenWin() {
+                window.open("upfile.html", "aa", "", "");
+
+            }
+            function OpenWinAddMuli() {
+               
+                window.open("AddMulu.html", "aa", "", "");
+
+            }
+    </script>
+
+
+</head>
+<body>
+
+    <form id="myForm" method="post">
+
+    	<div  title="注册" style="width:600px;padding:10px 60px 20px 60px">
+		<table cellpadding="5">
+			<tr>
+				<td>课程名称:</td>
+				<td><input id="Cname" name="Cname"  ></td>
+			</tr>
+
+            			<tr>
+				<td>课程描述：</td>
+				<td><input id="Cdescribe" name="Cdescribe"  ></td>
+			</tr>
+
+              			<tr>
+				<td>价格：</td>
+				<td><input id="Cprice" name="Cprice"  ></td>
+			</tr>
+
+
+
+
+
+            	<tr>
+				<td>一级分类:</td>
+				<td><select id="CategoryOne" name="CategoryOne"  name="state" style="width:150px;">
+                    <option value="系统管理员">系统管理员</option>
+                    <option value="系统管理员">课程管理员</option>
+	</select></td>
+			</tr>
+
+
+
+
+         	<tr>
+				<td>二级分类:</td>
+				<td><select id="CategoryTwo" name="CategoryTwo"  name="state" style="width:150px;">
+                    <option value="系统管理员">系统管理员</option>
+                    <option value="系统管理员">课程管理员</option>
+	</select></td>
+			</tr>
+
+
+
+
+                     	<tr>
+				<td>三级分类:</td>
+				<td><select id="CategoryThree" name="CategoryThree"  name="state" style="width:150px;">
+                    <option value="系统管理员">系统管理员</option>
+                    <option value="系统管理员">课程管理员</option>
+	</select></td>
+			</tr>
+
+
+
+  
+       
+			<tr>
+				<td>封面图片:</td>
+				<td><input name="Cpic" id="Cpic"></td>
+                <td>
+                    <input id="Button1" type="button" value="上传图片" onclick="OpenWin();" /></td>
+			</tr>
+
+            <tr>
+				<td>目录:</td> 
+				<td>
+                    <input id="Button2" type="button" value="button" onclick="OpenWinAddMuli();" /></td>
+                 <td>&nbsp;</td>
+			</tr>
+
+	
+            
+            <tr>
+				<td>详情:</td> 
+				<td><div id="mulu"></div></td>
+                 <td>&nbsp;</td>
+			</tr>
+
+                        
+            <tr>
+				<td>详情:</td> 
+				<td>&nbsp;</td>
+                 <td>&nbsp;</td>
+			</tr>
+
+
+
+            <tr>
+				<td></td>
+				<td align="right"><a href="#"  id="btnLogin">Save</a></td>
+			</tr>
+		</table>
+	</div>
+
+        </form>
+
+
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnLogin").click(function () {
+
+
+          
+            $('#myForm').form('submit', {
+                url: 'Handler/CourseHandler.ashx?action=add',
+                onSubmit: function () {
+                   // return $(this).form('validate');
+                },
+                success: function (data) {
+                    alert(data);
+                    //if (val.errcode == 2) {
+                    //    $('#dlg').dialog('open');
+                    //}
+                    //else if (val.errcode == 1) {
+                    //    alert("恭喜您已完成注册操作！我们会尽快根据您所填写的 “电话”或者 “Email”与您联系 !确认后系统会自动审核通过！！请耐心等待！");
+                    //    window.location = "login.aspx";
+                    //}
+                }
+            });
+        })
+    })
+
+
+
+
+</script>

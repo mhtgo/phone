@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+   <script type="text/javascript" src="Scripts/jquery.min.js"></script>
+    
+   <script type="text/javascript" src="Scripts/jquery.easyui.min.js"></script>
+
+</head>
+<body>
+
+    <form id="myForm" method="post">
+
+    	<div  title="注册" style="width:600px;padding:10px 60px 20px 60px">
+		<table cellpadding="5">
+			<tr>
+				<td>登录名:</td>
+				<td><input id="userName" name="userName"  ></td>
+			</tr>
+
+            			<tr>
+				<td>密码：</td>
+				<td><input id="password" name="userPwd" type="userPwd" ></td>
+			</tr>
+
+  
+
+            	<tr>
+				<td>权限:</td>
+				<td><select id="power" name="power"  name="state" style="width:150px;">
+                    <option value="系统管理员">系统管理员</option>
+                    <option value="课程管理员">课程管理员</option>
+	</select></td>
+			</tr>
+
+  	
+            <tr>
+				<td></td>
+				<td align="right"><a href="#"  id="btnLogin">Save</a></td>
+			</tr>
+		</table>
+	</div>
+
+        </form>
+
+
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnLogin").click(function () {
+
+
+
+            $('#myForm').form('submit', {
+                url: 'Handler/UserHandler.ashx?action=login',
+                onSubmit: function () {
+                    // return $(this).form('validate');
+                },
+                success: function (data) {
+                    alert(data);
+                    //var msg = eval('(' + data + ')');
+                    //alert(msg);
+
+
+
+                    
+                }
+            });
+        })
+    })
+
+
+
+
+</script>

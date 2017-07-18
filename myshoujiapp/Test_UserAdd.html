@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+   <script type="text/javascript" src="Scripts/jquery.min.js"></script>
+    
+   <script type="text/javascript" src="Scripts/jquery.easyui.min.js"></script>
+
+</head>
+<body>
+
+    <form id="myForm" method="post">
+
+    	<div  title="注册" style="width:600px;padding:10px 60px 20px 60px">
+		<table cellpadding="5">
+			<tr>
+				<td>登录名:</td>
+				<td><input id="userName" name="userName"  ></td>
+			</tr>
+
+            			<tr>
+				<td>密码：</td>
+				<td><input id="userPwd" name="userPwd" type="password" ></td>
+			</tr>
+
+  
+
+            	<tr>
+				<td>email:</td>
+						<td><input id="email" name="email" ></td>
+			</tr>
+
+  
+               	<tr>
+				<td>phone:</td>
+						<td><input id="phone" name="phone" ></td>
+			</tr>
+
+
+
+
+       
+			<tr>
+				<td>真实姓名:</td>
+				<td><input name="nickname" id="nickname"></td>
+                <td><div style="color:Red;">此项为审核通过依据，请如实填写!</div></td>
+			</tr>
+
+            <tr>
+				<td>头像:</td> 
+				<td><input name="userPic" ></td>
+                 <td><div style="color:Red;">此项为审核通过依据，请如实填写!</div></td>
+			</tr>
+
+	
+            <tr>
+				<td></td>
+				<td align="right"><a href="#"  id="btnLogin">Save</a></td>
+			</tr>
+		</table>
+	</div>
+
+        </form>
+
+
+
+</body>
+</html>
+
+
+<script type="text/javascript">
+    $(function () {
+
+        $("#btnLogin").click(function () {
+
+
+          
+            $('#myForm').form('submit', {
+                url: 'Handler/OnCourseHandler.ashx?action=deletecollection&CourseID=1',
+                onSubmit: function () {
+                   // return $(this).form('validate');
+                },
+                success: function (data) {
+                    var val = eval('(' + data + ')');
+                    alert(val.errcode);
+
+                    //if (val.errcode == 2) {
+                    //    $('#dlg').dialog('open');
+                    //}
+                    //else if (val.errcode == 1) {
+                    //    alert("恭喜您已完成注册操作！我们会尽快根据您所填写的 “电话”或者 “Email”与您联系 !确认后系统会自动审核通过！！请耐心等待！");
+                    //    window.location = "login.aspx";
+                    //}
+                }
+            });
+        })
+    })
+
+
+
+
+</script>

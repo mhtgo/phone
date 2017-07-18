@@ -1,0 +1,64 @@
+<ion-view view-title="" hide-nav-bar="false" class="mypersonal">
+  <style>
+    ion-view{
+      background-color:#fff;
+    }
+    .thisitem{
+      position: absolute;
+      background-color:transparent;
+      border:none;
+      z-index:3;
+      width:4rem;
+      height: 5rem;
+      left: 50%;
+      top: 0;
+      margin-left:-2rem;
+      margin-top:1.5rem;
+    }
+    .thisitem img{
+     position: absolute;
+      zoom: .4;
+    }
+    .thisitem img:nth-child(1){
+      top:0;
+      left: 0;
+    }
+    .thisitem img:nth-child(2){
+      top: .5rem;
+      left:50%;
+      margin-left:-125px;
+    }
+    .thisitem img:nth-child(3){
+      bottom: 0;
+      right: 0;
+    }
+    .itemss{
+      height: 1.2rem;
+    }
+    .thisitem p{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+    }
+  </style>
+  <ion-content>
+    <div class="list">
+      <div class="item item-image">
+        <img src="img/person_01.png" alt="">
+      </div>
+      <div class="item thisitem">
+        <img src="img/person_03.png" alt="">
+        <img src="img/person_touxiang.png" alt="">
+        <img src="img/person_04.png" alt="">
+        <p>{{name}}</p>
+      </div>
+      <div class="item item-icon-left itemss text-right">{{name}}<i class="icon ion-ios-person-outline"></i></div>
+      <div class="item item-icon-left itemss text-right">{{email}}<i class="icon ion-ios-email-outline"></i></div>
+      <div class="item item-icon-left itemss text-right">{{phone}}<i class="icon ion-ios-telephone-outline"></i></div>
+
+      <div class="padding-top text-center"><button ng-click="quit()" class="button button-positive">退出登录</button></div>
+    </div>
+  </ion-content>
+</ion-view>

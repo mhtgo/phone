@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    
+   <script type="text/javascript" src="Scripts/jquery-1.7.1.min.js"></script>
+    
+
+
+</head>
+<body>
+    <div id="1">1</div><div id="2">2</div><div id="3">3</div>
+
+    <div id ="result"></div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        $("#1").click(function () {
+
+
+
+            //$.ajax({
+            //    type: "GET",
+            //    url: "Handler/AdminHandler.ashx?action=show&pageStart=" + $("#1").text(),
+            //    dataType: 'jsonp',
+            //    jsonp: "jsoncallback",
+            //    success: function (msg) {
+            //        console.log(msg);
+            //    }
+            //});
+
+
+
+
+
+
+            //$.ajax({
+            //    async: false,
+            //    url: "http://b2c.feicuiedu.com/Handler/AdminHandler.ashx?action=show&callback=?",
+            //    data: {
+            //        searchText: "",
+            //        pageStart: 1
+            //    },
+            //    type: "GET",
+            //    dataType: "jsonp",
+            //    jsonp: "callback" //传递给请求处理程序或页面的，用以获得jsonp回调函数名的参数名(一般默认为:callback)  
+
+            //}).done(function (result) {
+            //    console.log(result);
+            //    //alert(result);
+            //    /*errTip(result, function(){
+            //        GLOBAL.pageToolBar.setPageSize(result.data.pageSize);
+    
+            //        GLOBAL.pageToolBar.loadPage(pageFirst?pageFirst:0, result.data.count);
+            //        GLOBAL.userListStore.loadData(result.data.info);
+            //    });*/
+            //}).fail(function () {
+            //    Ext.Msg.alert("错误", "获取管理员列表失败！");
+            //}).always(function () {
+            //    //隐藏数据加载提示
+            //    msgTip.hide();
+            //});
+
+
+
+            // 第一种方式
+
+            $.ajax({
+
+                type: "get",
+
+                url: "http://b2c.feicuiedu.com/Handler/AdminHandler.ashx?action=show", // 这个就是不同于当前域的一个URL地址，这里单纯演示，所以同域
+
+                dataType: "jsonp",
+
+                jsonp: "jsonpcallback",  // 指定回调函数，这里名字可以为其他任意你喜欢的，比如callback，不过必须与下一行的GET参数一致
+
+                data: "searchText=&pageStart=1&jsonpcallback=?", // jsonpcallback与上面的jsonp值一致
+
+                success: function (json) {
+
+                    console.log(json);
+
+                }
+            });
+
+
+
+        })
+
+        $("#2").click(function () {
+            
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/AdminHandler.ashx?action=show",
+                data: "pageStart=" + $("#2").text(),
+                success: function (msg) {
+                    console.log(msg);
+                }
+            });
+
+
+        })
+
+        $("#3").click(function () {
+           
+
+            $.ajax({
+                type: "POST",
+                url: "Handler/AdminHandler.ashx?action=show",
+                data: "currentPage=" + $("#3").text(),
+                success: function (msg) {
+                    console.log(msg);
+                }
+            });
+
+        })
+    })
+
+
+
+
+
+
+</script>
